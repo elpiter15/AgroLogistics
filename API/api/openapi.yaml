@@ -12,7 +12,7 @@ info:
 servers:
 - url: /
 paths:
-/product:
+  /product:
     delete:
       description: Eliminado un dato de los prouctos guardado en la base de datos.
       operationId: deleteProduct
