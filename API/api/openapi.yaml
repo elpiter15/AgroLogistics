@@ -1,0 +1,219 @@
+openapi: 3.0.1
+info:
+  contact:
+    email: lceballoo@alumnos.unex.es
+    name: AgroLogistics
+    url: http://spilab.es/
+  description: Esta API provee los servicios necesarios para gestionar los datos recogidos
+    por los dispositivos Arduino y sus sensores.
+  termsOfService: http://spilab.es/
+  title: AgroLogistics
+  version: "1.0"
+servers:
+- url: /
+paths:
+/product:
+    delete:
+      description: Eliminado un dato de los prouctos guardado en la base de datos.
+      operationId: deleteProduct
+      parameters:
+      - description: Id del producto
+        explode: true
+        in: query
+        name: idProduct
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: form
+      responses:
+        201:
+          content:
+            text/plain:
+              schema:
+                example: Created
+                title: Created
+                type: string
+          description: Created
+        404:
+          content:
+            text/plain:
+              schema:
+                example: Not found
+                title: Endpoint not found
+                type: string
+          description: Not found response
+        405:
+          content:
+            text/plain:
+              schema:
+                example: The format is not valid
+                title: Invalid input
+                type: string
+          description: Invalid input
+      summary: Eliminado de datos de los prouctos.
+      tags:
+      - Producto
+      x-swagger-router-controller: Producto
+    get:
+      description: Devuelve todos los datos relacionados con el producto.
+      operationId: getProduct
+      parameters:
+      - description: Id del producto
+        explode: true
+        in: query
+        name: idProduct
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: form
+      responses:
+        201:
+          content:
+            text/plain:
+              schema:
+                example: Created
+                title: Created
+                type: string
+          description: Created
+        404:
+          content:
+            text/plain:
+              schema:
+                example: Not found
+                title: Endpoint not found
+                type: string
+          description: Not found response
+        405:
+          content:
+            text/plain:
+              schema:
+                example: The format is not valid
+                title: Invalid input
+                type: string
+          description: Invalid input
+      summary: Devuelve todos los datos relacionados con el producto.
+      tags:
+      - Producto
+      x-swagger-router-controller: Producto
+    post:
+      description: Creacion de nuevos datos asociados a un producto.
+      operationId: postProduct
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+        required: true
+      responses:
+        201:
+          content:
+            text/plain:
+              schema:
+                example: Created
+                title: Created
+                type: string
+          description: Created
+        404:
+          content:
+            text/plain:
+              schema:
+                example: Not found
+                title: Endpoint not found
+                type: string
+          description: Not found response
+        405:
+          content:
+            text/plain:
+              schema:
+                example: The format is not valid
+                title: Invalid input
+                type: string
+          description: Invalid input
+      summary: Registra un nuevo dato de producto.
+      tags:
+      - Producto
+      x-swagger-router-controller: Producto
+    put:
+      description: Modifica un dato de producto previamente registrado
+      operationId: putProduct
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+        required: true
+      responses:
+        201:
+          content:
+            text/plain:
+              schema:
+                example: Created
+                title: Created
+                type: string
+          description: Created
+        404:
+          content:
+            text/plain:
+              schema:
+                example: Not found
+                title: Endpoint not found
+                type: string
+          description: Not found response
+        405:
+          content:
+            text/plain:
+              schema:
+                example: The format is not valid
+                title: Invalid input
+                type: string
+          description: Invalid input
+      summary: Modifica un dato de producto previamente registrado
+      tags:
+      - Producto
+      x-swagger-router-controller: Producto
+components:
+  responses:
+    201:
+      content:
+        text/plain:
+          schema:
+            example: Created
+            title: Created
+            type: string
+      description: Created
+    404:
+      content:
+        text/plain:
+          schema:
+            example: Not found
+            title: Endpoint not found
+            type: string
+      description: Not found response
+    405:
+      content:
+        text/plain:
+          schema:
+            example: The format is not valid
+            title: Invalid input
+            type: string
+      description: Invalid input
+  schemas:
+    Product:
+      example:
+        amount: 45.5
+        name: producto_x
+        idProduct: 1
+      properties:
+        idProduct:
+          example: 1
+          format: int64
+          type: integer
+        name:
+          example: producto_x
+          type: string
+        stock:
+          example: 45.5
+          type: number
+      type: object
